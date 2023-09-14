@@ -1,6 +1,8 @@
 // https://www.youtube.com/watch?v=SccSCuHhOw0&t=980s
+const connection = require('./database')
 const express = require('express')
 const app = express()
+app.listen(1313)
 
 // https://sentry.io/answers/why-does-my-javascript-code-receive-a-no-access-control-allow-origin-header-error-while-postman-does-not/
 const cors = require('cors')
@@ -9,9 +11,15 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
-app.listen(1313)
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.json({
     msg: 'Hello World!',
   })
+  console.log('Hello World!')
+  // connection.query('select * from actor', (err, rows) => {
+  //   if (err) throw err
+  //   for (let i = 0; i < rows.length; i++) {
+  //     console.log(rows[i].first_name, rows[i].last_name)
+  //   }
+  // })
 })
